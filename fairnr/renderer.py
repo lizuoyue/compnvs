@@ -79,6 +79,7 @@ class NeuralRenderer(object):
                     np.load(f)['poses'] for f in sorted(glob.glob(test_camera_poses + "*.npz"))
                 ]
                 self.test_poses = np.concatenate(self.test_poses, 0)
+                self.test_poses_num = self.test_poses.shape[0]
             else:
                 self.test_poses = data_utils.load_matrix(test_camera_poses)
                 if self.test_poses.shape[1] == 17:
@@ -86,9 +87,9 @@ class NeuralRenderer(object):
                     self.test_poses = self.test_poses[:, :-1]
                 self.test_poses = self.test_poses.reshape(-1, 4, 4)
 
-            if test_camera_views is not None:
-                render_views = parse_views(test_camera_views)
-                self.test_poses = np.stack([self.test_poses[r] for r in render_views])
+            # if test_camera_views is not None:
+            #     render_views = parse_views(test_camera_views)
+            #     self.test_poses = np.stack([self.test_poses[r] for r in render_views])
 
         else:
             self.test_poses = None
@@ -138,7 +139,7 @@ class NeuralRenderer(object):
 
         if 'vertex_idx' in sample:
             # step, image_names = self.generate_single(model, sample, step, frames=1)
-            step, image_names = self.generate_single(model, sample, step, frames=15)
+            step, image_names = self.generate_single(model, sample, step, frames=self.test_poses_num)
             logger.info("done")
             return step, image_names
 
