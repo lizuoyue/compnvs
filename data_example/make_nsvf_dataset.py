@@ -117,7 +117,7 @@ if __name__ == '__main__':
             continue
         
         dataset = ExampleDataset(f'data_for_zuoyue/{sid:03d}')
-        dataset.create_dataset_folder(f'ExampleScenesFused/{sid:03d}')
+        dataset.create_dataset_folder(f'../ExampleScenesFused/{sid:03d}')
 
         all_xyzs, all_rgbs = [], []
         idx = 0
@@ -130,8 +130,8 @@ if __name__ == '__main__':
         all_xyzs = np.vstack(all_xyzs)
         all_rgbs = np.vstack(all_rgbs)
 
-        np.savez_compressed(f'SilvanScenesFused/{sid:03d}/npz/00000.npz', rgb=all_rgbs, pts=all_xyzs)
-        
+        np.savez_compressed(f'../ExampleScenesFused/{sid:03d}/npz/00000.npz', rgb=all_rgbs, pts=all_xyzs)
+
         # print(all_xyzs.shape)
         # print(simple_downsample(all_xyzs, all_rgbs, 0.01)[0].shape)
         
