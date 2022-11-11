@@ -26,13 +26,15 @@ except:
 
 try:
     # import fairnr.clib._ext as _ext
-    import _ext
+    # import clib._ext as _ext
+    import torch
+    import fairnr.clib._ext
+    # from fairnr.clib import _ext
 except ImportError:
-    pass
-    # raise ImportError(
-    #     "Could not import _ext module.\n"
-    #     "Please see the setup instructions in the README"
-    # )
+    raise ImportError(
+        "Could not import _ext module.\n"
+        "Please see the setup instructions in the README"
+    )
 
 MAX_DEPTH = 10000.0
 
