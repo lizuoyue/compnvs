@@ -5,14 +5,12 @@
 * MinkowskiEngine
 * NSVF
 
-## Setup
-python3 setup.py build_ext --inplace
-
 ## Inference
-1. You may first create checkpoint folders by runing in the path `./compnvs`
+1. You may first create checkpoint folders by runing in the path `./compnvs` and also build.
 ```
 mkdir geo_completion/ckpt
 mkdir ckpt
+python3 setup.py build_ext --inplace
 ```
 2. Place the whole `data_for_zuoyue` folder inside the `data_example` folder.
 3. Place `ckpt_geo_comp.pt` in the `geo_completion/ckpt` folder.

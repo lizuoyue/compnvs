@@ -6,3 +6,4 @@ geo_completion/mink_comp_pred
 __pycache__
 ckpt
 build
+fairnr/clib/_ext.cpython-36m-x86_64-linux-gnu.so
