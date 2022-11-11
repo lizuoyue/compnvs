@@ -1,2 +1,6 @@
 data_example/data_for_zuoyue
 ExampleScenesFused
+geo_completion/ckpt
+geo_completion/mink_comp_pred
+*/__pycache__
+__pycache__
