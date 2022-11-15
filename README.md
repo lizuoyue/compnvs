@@ -1,6 +1,6 @@
 # CompNVS
 
-## Requested dependencies
+## Required dependencies
 * PyTorch
 * MinkowskiEngine
 * NSVF
