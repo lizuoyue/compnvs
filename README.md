@@ -12,6 +12,8 @@ mkdir geo_completion/ckpt
 mkdir ckpt
 python3 setup.py build_ext --inplace
 ```
+Checkpoints can be download here:
+https://drive.google.com/file/d/1ml5v1gmbTafrMRl_OD8AfcESqLk16G0C/view?usp=sharing
 2. Place the whole `data_for_zuoyue` folder inside the `data_example` folder.
 3. Place `ckpt_geo_comp.pt` in the `geo_completion/ckpt` folder.
 4. Place `ckpt_encoder.pt` and `ckpt_nsvf.pt` in the `ckpt` folder.
