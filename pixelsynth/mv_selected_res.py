@@ -1,0 +1,51 @@
+import os
+import tqdm
+from PIL import Image
+
+# # Replica
+# sltd_file_dir = '/home/lzq/lzy/NSVF/selected_replica_views.txt'
+# with open(sltd_file_dir, 'r') as f:
+#     sltd_view_names = [line.strip() for line in f.readlines()]
+
+# src_dir = 'res_multiviews_replica'
+# rgb_dst_dir = 'res_multiviews_replica_sltd/rgb'
+# gif_dst_dir = 'res_multiviews_replica_sltd/gif'
+# os.makedirs(gif_dst_dir, exist_ok=True)
+
+# for view_name in tqdm.tqdm(sltd_view_names):
+#     view_rgb_dst_dir = f'{rgb_dst_dir}/{view_name}'
+#     os.makedirs(view_rgb_dst_dir, exist_ok=True)
+
+#     # New
+#     view_imgs = [Image.open(f'{src_dir}/{view_name}/{img_idx:02d}.png').convert('RGB') for img_idx in range(15)]
+#     for idx, img in enumerate(view_imgs):
+#         img.save(os.path.join(view_rgb_dst_dir, f'{idx:02d}.jpg'))   # save images
+#     gif_img_indices = list(range(7,15)) + list(range(14,-1,-1)) + list(range(0,7))
+#     imgs_for_gif = [view_imgs[idx] for idx in gif_img_indices]
+#     # imgs_for_gif = view_imgs[7:15] + view_imgs[14:-1:-1] + view_imgs[0:7]
+#     imgs_for_gif[0].save(os.path.join(gif_dst_dir, f'{view_name}.gif'),     # save gif
+#                             append_images=imgs_for_gif[1:], duration=200, loop=0, save_all=True)
+
+# ARKit
+sltd_file_dir = '/home/lzq/lzy/NSVF/selected_arkit_views.txt'
+with open(sltd_file_dir, 'r') as f:
+    lines = [line.strip() for line in f.readlines()]
+
+src_dir = 'res_multiviews_arkit'
+rgb_dst_dir = 'res_multiviews_arkit_sltd/rgb'
+gif_dst_dir = 'res_multiviews_arkit_sltd/gif'
+os.makedirs(gif_dst_dir, exist_ok=True)
+
+for line in tqdm.tqdm(lines):
+    view_name, angle = line.split(' ')
+    view_rgb_dst_dir = f'{rgb_dst_dir}/{view_name}'
+    os.makedirs(view_rgb_dst_dir, exist_ok=True)
+
+    # New
+    view_imgs = [Image.open(f'{src_dir}/{view_name}/{img_idx:02d}.png').convert('RGB').rotate(int(angle), expand=1) for img_idx in range(15)]
+    for idx, img in enumerate(view_imgs):
+        img.save(os.path.join(view_rgb_dst_dir, f'{idx:02d}.jpg'))   # save images
+    gif_img_indices = list(range(7,15)) + list(range(14,-1,-1)) + list(range(0,7))
+    imgs_for_gif = [view_imgs[idx] for idx in gif_img_indices]
+    imgs_for_gif[0].save(os.path.join(gif_dst_dir, f'{view_name}.gif'),     # save gif
+                            append_images=imgs_for_gif[1:], duration=200, loop=0, save_all=True)
